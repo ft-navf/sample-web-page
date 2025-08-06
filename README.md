@@ -1,1 +1,67 @@
-# sample-web-page
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Music Recommender</title>
+</head>
+<body>
+
+  <div class="container">
+    <h1>🎧 Music Recommender</h1>
+    <label for="mood">Choose your mood:</label>
+    <select id="mood">
+      <option value="happy">Happy</option>
+      <option value="sad">Sad</option>
+      <option value="chill">Chill</option>
+      <option value="workout">Workout</option>
+    </select>
+    <button onclick="getRecommendations()">Get Recommendations</button>
+    <ul id="recommendationList"></ul>
+  </div>
+
+  <script>
+    const musicDB = {
+      happy: [
+        "Pharrell Williams – Happy",
+        "Katy Perry – Firework",
+        "Justin Timberlake – Can't Stop the Feeling",
+        "BTS – Dynamite"
+      ],
+      sad: [
+        "Adele – Someone Like You",
+        "Billie Eilish – Everything I Wanted",
+        "Lewis Capaldi – Someone You Loved",
+        "Coldplay – The Scientist"
+      ],
+      chill: [
+        "Lauv – Paris in the Rain",
+        "Joji – Glimpse of Us",
+        "Norah Jones – Sunrise",
+        "Bon Iver – Holocene"
+      ],
+      workout: [
+        "Eminem – Lose Yourself",
+        "Survivor – Eye of the Tiger",
+        "Kanye West – Stronger",
+        "Linkin Park – Numb"
+      ]
+    };
+
+    function getRecommendations() {
+      const mood = document.getElementById("mood").value;
+      const list = document.getElementById("recommendationList");
+
+      list.innerHTML = "";
+      const recommendations = musicDB[mood];
+
+      recommendations.forEach(track => {
+        const li = document.createElement("li");
+        li.textContent = track;
+        list.appendChild(li);
+      });
+    }
+  </script>
+
+</body>
+</html>
